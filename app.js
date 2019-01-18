@@ -13,11 +13,13 @@ function app(people)
 
 	//
     let dirName=searchByName(people);
+    displayPerson(dirName);
+    console.log(dirName)
       // TODO: search by name
-    return dirName;
     break;
     case 'no':
     dirTraits=searchByTraits(people);
+    displayPeople(dirTraits);
      console.log(dirTraits);
     //need to get function arraysEqual to access data from people variable
       // TODO: search by traits 
@@ -27,8 +29,9 @@ function app(people)
       app(people); // restart app
     break;
   }
+
 }
-displayPerson(dirName)
+
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
@@ -70,8 +73,8 @@ function searchByName(people){
       return true;
     }
   });
-
-  return filteredPeople;// TODO: What to do with filteredPeople?
+  console.log(filteredPeople);
+  return filteredPeople[0];// TODO: What to do with filteredPeople?
 
 }
 
@@ -118,7 +121,53 @@ function searchByTraits(people)
 {
 	let filteredTraits;
 	var gender = promptFor("What is the person's gender?", chars);
+	continuePrompt=promptFor("Would you like to continue? Y/N", chars);
+		switch(continuePrompt)
+		{case "no" || "No" || "N" || "n":
+		
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+		
+			console.log(filteredTraits);
+				return filteredTraits;
+				break;
+		
+		case "yes" || "Yes" || "Y" || "y" || " ":
+
+		}
+
+		
+		
+
+	var eyeColor = promptFor("What is the person's eye color?", chars);
 	promptFor("Would you like to continue? Y/N", chars);
+		switch(continuePrompt)
+		{case "no" || "No" || "N" || "n":
+		
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+		
+			console.log(filteredTraits);
+				return filteredTraits;
+				break;
+		
+		case "yes" || "Yes" || "Y" || "y" || " ":
+
+		}
+  	var getHeight = promptFor("What is the person's height?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
 		if("no" || "No" || "N" || "n")
 		{
 			filteredTraits = people.filter(function(el)
@@ -128,7 +177,8 @@ function searchByTraits(people)
       			return true;
 				}
 			}
-				)
+				);
+			console.log(filteredTraits);
 				return filteredTraits;
 
 		}
@@ -136,15 +186,70 @@ function searchByTraits(people)
 		{
 			return;
 		}
-	var eyeColor = promptFor("What is the person's eye color?", chars);
-  	var height = promptFor("What is the person's height?", chars);
   	var weight = promptFor("What is the person's weight?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
   	var occupation = promptFor("What is the person's occupation?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
   	var dob = promptFor("What is the person's date of birth?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
 
   	filteredTraits = people.filter(function(el) 
   	{
-    if(el.firstName === firstName && el.lastName === lastName) 
+    if(el.firstName === firstName && el.lastName === lastName && el.dob && el.occupation && el.gender && el.weight && el.getHeight && el.eyeColor)
     {
     return true;
     }
