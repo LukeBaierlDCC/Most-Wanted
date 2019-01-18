@@ -3,16 +3,19 @@ Build all of your functions for displaying and gathering information below (GUI)
 */
 
 // app is the function called to start the entire application
-function app(people){
+function app(people)
+{
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
-  switch(searchType){
+  switch(searchType)
+  {
     case 'yes':
     let dirName=searchByName(people);
-    console.log(dirName);
       // TODO: search by name
       break;
     case 'no':
-      // TODO: search by traits
+    dirTraits=searchByTraits(people);
+     console.log(dirTraits);
+     // TODO: search by traits
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -100,3 +103,49 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
+function birthDate() {
+	var today = new Date();
+	console.log(today);
+}
+function searchByTraits(people) 
+{
+	let filteredTraits;
+	var gender = promptFor("What is the person's gender?", chars);
+	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
+	var eyeColor = promptFor("What is the person's eye color?", chars);
+  	var height = promptFor("What is the person's height?", chars);
+  	var weight = promptFor("What is the person's weight?", chars);
+  	var occupation = promptFor("What is the person's occupation?", chars);
+  	var dob = promptFor("What is the person's date of birth?", chars);
+
+  	filteredTraits = people.filter(function(el) 
+  	{
+    if(el.firstName === firstName && el.lastName === lastName) 
+    {
+    return true;
+    }
+  	}
+ 	);
+
+  return filteredTraits;
+}
+	
