@@ -112,6 +112,31 @@ function searchByTraits(people)
 {
 	let filteredTraits;
 	var gender = promptFor("What is the person's gender?", chars);
+	continuePrompt=promptFor("Would you like to continue? Y/N", chars);
+		switch(continuePrompt)
+		{case "no" || "No" || "N" || "n":
+		
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+		
+			console.log(filteredTraits);
+				return filteredTraits;
+				break;
+		
+		case "yes" || "Yes" || "Y" || "y" || " ":
+
+		}
+
+		
+		
+
+	var eyeColor = promptFor("What is the person's eye color?", chars);
 	promptFor("Would you like to continue? Y/N", chars);
 		if("no" || "No" || "N" || "n")
 		{
@@ -131,15 +156,90 @@ function searchByTraits(people)
 		{
 			return;
 		}
-	var eyeColor = promptFor("What is the person's eye color?", chars);
-  	var height = promptFor("What is the person's height?", chars);
+  	var getHeight = promptFor("What is the person's height?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
   	var weight = promptFor("What is the person's weight?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
   	var occupation = promptFor("What is the person's occupation?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
   	var dob = promptFor("What is the person's date of birth?", chars);
+  	promptFor("Would you like to continue? Y/N", chars);
+		if("no" || "No" || "N" || "n")
+		{
+			filteredTraits = people.filter(function(el)
+			{
+    			if(el.gender === gender) 
+    			{
+      			return true;
+				}
+			}
+				);
+			console.log(filteredTraits);
+				return filteredTraits;
+
+		}
+		else if("yes" || "Yes" || "Y" || "y")
+		{
+			return;
+		}
 
   	filteredTraits = people.filter(function(el) 
   	{
-    if(el.firstName === firstName && el.lastName === lastName) 
+    if(el.firstName === firstName && el.lastName === lastName && el.dob && el.occupation && el.gender && el.weight && el.getHeight && el.eyeColor)
     {
     return true;
     }
@@ -148,4 +248,4 @@ function searchByTraits(people)
 
   return filteredTraits;
 }
-	
+
