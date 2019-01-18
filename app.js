@@ -12,7 +12,9 @@ function app(people){
       // TODO: search by name
       break;
     case 'no':
-      // TODO: search by traits
+    searchByTrait(people);
+    //need to get function arraysEqual to access data from people variable
+      // TODO: search by traits 
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -100,3 +102,4 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+function searchByTraits(people); 
