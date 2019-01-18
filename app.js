@@ -7,7 +7,7 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-    let dirname=searchByName(people);
+    let dirName=searchByName(people);
     console.log(dirName);
       // TODO: search by name
       break;
