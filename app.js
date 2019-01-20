@@ -13,14 +13,24 @@ function app(people)
 
 	//
     let dirName=searchByName(people);
-    displayPerson(dirName);
-    console.log(dirName)
-      // TODO: search by name
-    break;
+    	if(dirName==undefined)
+    	{
+    		alert("Could not find that individual. Please try again.");
+    		return app(people);
+    	}
+    	else
+    	{	
+    	displayPerson(dirName);
+    	console.log(dirName)
+    	mainMenu(dirName,people);
+     	 // TODO: search by name
+   		 break;
+    	}
     case 'no':
     dirTraits=searchByTraits(people);
     displayPeople(dirTraits);
      console.log(dirTraits);
+     mainMenu(dirTraits,people);
     //need to get function arraysEqual to access data from people variable
       // TODO: search by traits 
       break;
@@ -43,6 +53,7 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
+    displayPerson(person);
       // TODO: get person's info
       break;
     case "family":
@@ -175,7 +186,7 @@ function searchByTraits(people)
 				return filteredTraits;
 				break;
 		
-		case "yes" || "Yes" || "Y" || "y" || "":
+		case "yes" || "Yes" || "Y" || "y":
 
 		}
 
@@ -197,7 +208,7 @@ function searchByTraits(people)
 				return filteredTraits;
 				break;
 		
-		case "yes" || "Yes" || "Y" || "y" || "":
+		case "yes" || "Yes" || "Y" || "y":
 
 		}
 
@@ -219,7 +230,7 @@ function searchByTraits(people)
 				return filteredTraits;
 				break;
 		
-		case "yes" || "Yes" || "Y" || "y" || "":
+		case "yes" || "Yes" || "Y" || "y":
 
 		}
 
@@ -241,7 +252,7 @@ function searchByTraits(people)
 				return filteredTraits;
 				break;
 		
-		case "yes" || "Yes" || "Y" || "y" || "":
+		case "yes" || "Yes" || "Y" || "y":
 
 		}
 
