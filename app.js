@@ -159,8 +159,73 @@ function displayFamily(person,people)
       return true;
     }
   });
-  console.log(family);
   displayPeople(family);
+  moreInfo=promptFor("Would you like to learn more about a family member?",chars);
+  	switch(moreInfo)
+  	{
+  	case "No" || "no" || "n":
+  	app(people);
+  	break; 			
+  	 case "Yes" || "yes" || "y":
+  	 break;
+  	}
+  displayPeople(family);
+  let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
+ 	switch(familyMember)
+ 	{case "1":
+ 	person=family[0]
+ 	getInfo(person,people)
+ 	break;
+ 	case "2":	
+  	person=family[1]
+  	getInfo(person,people)
+  	break;
+  	case "3":
+  	person=family[2]
+  	getInfo(person,people)
+  	break;
+  	case "4":
+  	person=family[3]
+  	getInfo(person,people)
+  	break;
+  	case "5":
+  	person=family[4]
+  	getInfo(person,people)
+  	break;
+  }
+}
+function getInfo(person,people)
+{
+let personInfo;
+chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
+  personInfo = "First Name: " + person.firstName + "\n";
+  personInfo += "Last Name: " + person.lastName + "\n";
+ 	if (chooseTraits== "Gender" || chooseTraits=="gender" || chooseTraits=="All")
+ 	{	
+ personInfo += "Gender: " + person.gender + "\n";
+	}
+ 	if (chooseTraits=="Height" || chooseTraits=="height" || chooseTraits=="All")
+ 	{
+  personInfo += "Height: " + person.height + "\n";
+  	}
+ 	if (chooseTraits=="Weight" || chooseTraits=="weight" || chooseTraits=="All")
+  	{
+  personInfo += "Weight: " + person.weight + "\n";
+	}
+ 	if (chooseTraits=="Age" || chooseTraits=="age" || chooseTraits=="All")
+ 	{
+  personInfo += "Age: " + birthDate(person.dob) + "\n";
+  	}
+  	if (chooseTraits=="Occupation" || chooseTraits=="occupation" || chooseTraits=="All")
+  	{	
+  personInfo += "Occupation: " + person.occupation + "\n";
+  	}
+ 	if (chooseTraits=="Eye Color" || chooseTraits=="eye color" || chooseTraits=="All")
+ 	{	
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  	}
+  // TODO: finish getting the rest of the information to display
+  alert(personInfo);
 }
 
 function searchByTraits(people)
