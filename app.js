@@ -53,13 +53,15 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    displayPerson(person);
+    displayPerson("person");
       // TODO: get person's info
       break;
     case "family":
+
       // TODO: get person's family
       break;
     case "descendants":
+
       // TODO: get person's descendants
       break;
     case "restart":
@@ -82,7 +84,7 @@ function searchByName(people){
     }
   });
   console.log(filteredPeople);
-  return filteredPeople[0];// TODO: What to do with filteredPeople?
+  return filteredPeople;// TODO: What to do with filteredPeople?
 
 }
 // alerts a list of people
@@ -135,148 +137,380 @@ function birthDate(birth)
 	return age;
 	
 }
-function searchByTraits(people) 
+
+function searchByTraits(people)
+
 {
-	let filteredTraits;
-	var gender = promptFor("What is the person's gender?", chars);
-	let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-		switch(continuePrompt)
-		{case "no" || "No" || "N" || "n":
-		
-			filteredTraits = people.filter(function(el)
-			{
-    			if(el.gender === gender) 
-    			{
-      			return true;
-				}
-			}
-				);
-		
-			console.log(filteredTraits);
-				return filteredTraits;
-				break;
-		
-		case "yes" || "Yes" || "Y" || "y" || " ":
+    let filteredTraits;
+    var gender = promptFor("What is the person's gender?", chars);
+    let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+        switch(continuePrompt)
+        {case "no" || "No" || "N" || "n":
+            filteredTraits = people.filter(function(el)
+            {
+               if(el.gender === gender)
+               {
+                 return true;
+                }
+            }
+                );
+            console.log(filteredTraits);
+                return filteredTraits;
+                break;
+        case "yes" || "Yes" || "Y" || "y" || " ":        }    var eyeColor = promptFor("What is the person's eye color?", chars);
 
-		}
+    continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+        switch(continuePrompt)
+        {case "no" || "No" || "N" || "n":      
+            filteredTraits = people.filter(function(el)
+            {
+               if(el.eyeColor === eyeColor && el.gender === gender)
+               {
+                 return true;
+                }
+            }
+                );        
+            console.log(filteredTraits);
+                return filteredTraits;
+                break;        
+    case "yes" || "Yes" || "Y" || "y" || " ":        }
 
-	var eyeColor = promptFor("What is the person's eye color?", chars);
-	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-		switch(continuePrompt)
-		{case "no" || "No" || "N" || "n":
-		
-			filteredTraits = people.filter(function(el)
-			{
-    			if(el.eyeColor === eyeColor && el.gender === gender) 
-    			{
-      			return true;
-				}
-			}
-				);
-		
-			console.log(filteredTraits);
-				return filteredTraits;
-				break;
-		
-		case "yes" || "Yes" || "Y" || "y" || " ":
+     var getHeight = promptFor("What is the person's height?", chars);
+     continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+        switch(continuePrompt)
+        {case "no" || "No" || "N" || "n":        
+            filteredTraits = people.filter(function(el)
+            {
+               if(el.getHeight === getHeight)
+               {
+                 return true;
+                }
+            }
+                );        
+            console.log(filteredTraits);
+                return filteredTraits;
+                break;        
 
-		}
-  	var getHeight = promptFor("What is the person's height?", chars);
-  	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-		switch(continuePrompt)
-		{case "no" || "No" || "N" || "n":
-		
-			filteredTraits = people.filter(function(el)
-			{
-    			if(el.getHeight === getHeight) 
-    			{
-      			return true;
-				}
-			}
-				);
-		
-			console.log(filteredTraits);
-				return filteredTraits;
-				break;
-		
-		case "yes" || "Yes" || "Y" || "y":
+    case "yes" || "Yes" || "Y" || "y":        }      var weight = promptFor("What is the person's weight?", chars);
+     continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+        switch(continuePrompt)
+        {case "no" || "No" || "N" || "n":        
+            filteredTraits = people.filter(function(el)
+            {
+               if(el.weight === weight)
 
-		}
+               {
 
-  	var weight = promptFor("What is the person's weight?", chars);
-  	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-		switch(continuePrompt)
-		{case "no" || "No" || "N" || "n":
-		
-			filteredTraits = people.filter(function(el)
-			{
-    			if(el.weight === weight) 
-    			{
-      			return true;
-				}
-			}
-				);
-		
-			console.log(filteredTraits);
-				return filteredTraits;
-				break;
-		
-		case "yes" || "Yes" || "Y" || "y":
+                 return true;
 
-		}
+                }
 
-  	var occupation = promptFor("What is the person's occupation?", chars);
-  	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-		switch(continuePrompt)
-		{case "no" || "No" || "N" || "n":
-		
-			filteredTraits = people.filter(function(el)
-			{
-    			if(el.occupation === occupation) 
-    			{
-      			return true;
-				}
-			}
-				);
-		
-			console.log(filteredTraits);
-				return filteredTraits;
-				break;
-		
-		case "yes" || "Yes" || "Y" || "y":
+            }
 
-		}
+                );        
 
-  	var dob = promptFor("What is the person's date of birth?", chars);
-  	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-		switch(continuePrompt)
-		{case "no" || "No" || "N" || "n":
-		
-			filteredTraits = people.filter(function(el)
-			{
-    			if(el.dob === dob) 
-    			{
-      			return true;
-				}
-			}
-				);
-		
-			console.log(filteredTraits);
-				return filteredTraits;
-				break;
-		
-		case "yes" || "Yes" || "Y" || "y":
+            console.log(filteredTraits);
 
-		}
+                return filteredTraits;
 
-  	filteredTraits = people.filter(function(el) 
-  	{
-    if(el.gender === gender && el.eyeColor === eyeColor && el.getHeight === getHeight && el.weight === weight && el.occupation === occupation && el.dob === dob)
-    {
-    return true;
-    }
-  	}
- 	);
+                break;        
 
-  return filteredTraits;
+        case "yes" || "Yes" || "Y" || "y":        }      var occupation = promptFor("What is the person's occupation?", chars);
+
+     continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+
+        switch(continuePrompt)
+
+        {case "no" || "No" || "N" || "n":        
+
+            filteredTraits = people.filter(function(el)
+
+            {
+
+               if(el.occupation === occupation)
+
+               {
+
+                 return true;
+
+                }
+
+            }
+
+                );        
+
+            console.log(filteredTraits);
+
+                return filteredTraits;
+
+                break;   
+
+        case "yes" || "Yes" || "Y" || "y":        }      var dob = promptFor("What is the person's date of birth?", chars);
+
+     continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+
+        switch(continuePrompt)
+
+        {case "no" || "No" || "N" || "n":
+      
+            filteredTraits = people.filter(function(el)
+
+            {
+
+               if(el.dob === dob)
+
+               {
+
+                 return true;
+
+                }
+
+            }
+
+                );        
+
+            console.log(filteredTraits);
+
+                return filteredTraits;
+
+                break;
+
+        case "yes" || "Yes" || "Y" || "y":        }      filteredTraits = people.filter(function(el)
+
+     {
+
+   if(el.gender === gender && el.eyeColor === eyeColor && el.getHeight === getHeight && el.weight === weight && el.occupation === occupation && el.dob === dob)
+
+   {
+
+   return true;
+
+   }
+
+     }
+
+    );  return filteredTraits;
+
 }
+
+Message Input
+
+
+// function searchByGender(people) 
+// {
+// 	let filteredTraits;
+// 	var gender = promptFor("What is the person's gender?", chars);
+// 	let continuePrompt = promptFor("Would you like to continue? Type Yes or No", chars);
+// 		switch(continuePrompt)
+// 		{case "no" || "No" || "N" || "n":
+// 			filteredTraits = people.filter(function(el)
+// 			{
+//     			if(el.gender === gender) 
+//     			{
+//       			return true;
+// 				}
+// 			}
+// 				);
+		
+// 			console.log(filteredTraits);
+// 				return filteredTraits;
+// 				break;
+		
+// 		case "yes" || "Yes" || "Y" || "y":
+// 		// default:
+// 		// alert("Invalid input. Please try again!");
+// 		// searchByTraits(people);
+// 		}
+// 			// if(gender != "male" || "female")
+// 			// {
+// 			// 	alert("Invalid input. Please try again!");
+// 			// 	searchByTraits(people);//want to redo prompt for gender after gibberish typed
+// 			// }
+// 			// else
+// 			// {
+
+// 			// }
+// function searchByEyeColor(people)
+// {
+// 	var eyeColor = promptFor("What is the person's eye color?", chars);
+// 	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+// 		switch(continuePrompt)
+// 		{case "no" || "No" || "N" || "n":
+		
+// 			filteredTraits = people.filter(function(el)
+// 			{
+//     			if(el.eyeColor === eyeColor && el.gender === gender) 
+//     			{
+//       			return true;
+// 				}
+// 			}
+// 				);
+		
+// 			console.log(filteredTraits);
+// 				return filteredTraits;
+// 				break;
+		
+// 		case "yes" || "Yes" || "Y" || "y" || " ":
+
+// 		default:
+// 		alert("Invalid input. Please try again!");
+// 		searchByTraits(people);
+
+// 		}
+// }
+
+// function searchByGetHeight(people)
+// {
+//   	var getHeight = promptFor("What is the person's height?", chars);
+//   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+// 		switch(continuePrompt)
+// 		{case "no" || "No" || "N" || "n":
+		
+// 			filteredTraits = people.filter(function(el)
+// 			{
+//     			if(el.getHeight === getHeight) 
+//     			{
+//       			return true;
+// 				}
+// 			}
+// 				);
+		
+// 			console.log(filteredTraits);
+// 				return filteredTraits;
+// 				break;
+		
+// 		case "yes" || "Yes" || "Y" || "y" || "":
+
+// 		default:
+// 		alert("Invalid input. Please try again!");
+// 		searchByTraits(people);
+
+// 		}
+// }
+
+// function searchByWeight(people)
+// {
+//   	var weight = promptFor("What is the person's weight?", chars);
+//   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+// 		switch(continuePrompt)
+// 		{case "no" || "No" || "N" || "n":
+		
+// 			filteredTraits = people.filter(function(el)
+// 			{
+//     			if(el.weight === weight) 
+//     			{
+//       			return true;
+// 				}
+// 			}
+// 				);
+		
+// 			console.log(filteredTraits);
+// 				return filteredTraits;
+// 				break;
+		
+// 		case "yes" || "Yes" || "Y" || "y" || "":
+
+
+// 		default:
+// 		alert("Invalid input. Please try again!");
+// 		searchByTraits(people);
+
+// 		}
+// }
+
+// function searchByOccupation(people)
+// {
+//   	var occupation = promptFor("What is the person's occupation?", chars);
+//   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+// 		switch(continuePrompt)
+// 		{case "no" || "No" || "N" || "n":
+		
+// 			filteredTraits = people.filter(function(el)
+// 			{
+//     			if(el.occupation === occupation) 
+//     			{
+//       			return true;
+// 				}
+// 			}
+// 				);
+		
+// 			console.log(filteredTraits);
+// 				return filteredTraits;
+// 				break;
+		
+// 		case "yes" || "Yes" || "Y" || "y" || "":
+
+// 		default:
+// 		alert("Invalid input. Please try again!");
+// 		searchByTraits(people);
+
+// 		}
+// }
+
+// function searchByDob(people)
+// {
+//   	var dob = promptFor("What is the person's date of birth?", chars);
+//   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+// 		switch(continuePrompt)
+// 		{case "no" || "No" || "N" || "n":
+		
+// 			filteredTraits = people.filter(function(el)
+// 			{
+//     			if(el.dob === dob) 
+//     			{
+//       			return true;
+// 				}
+// 			}
+// 				);
+		
+// 			console.log(filteredTraits);
+// 				return filteredTraits;
+// 				break;
+		
+// 		case "yes" || "Yes" || "Y" || "y" || "":
+
+// 		default:
+// 		alert("Invalid input. Please try again!");
+// 		searchByTraits(people);
+
+// 		}
+// }
+//   	filteredTraits = people.filter(function(el) 
+//   	{
+//     if(el.gender === gender && el.eyeColor === eyeColor && el.getHeight === getHeight && el.weight === weight && el.occupation === occupation && el.dob === dob)
+//     {
+//     return true;
+//     }
+//   	}
+//  	);
+
+//   return filteredTraits;
+// }
+
+// function searchByTraits(people)
+// {
+// 	let defineTrait=promptFor("What traits would you like to define? Enter 'gender', 'eye color', 'height', 'weight', 'occupation', or 'dob'? Type the option you want or 'restart' or 'quit'",chars)
+// 	switch(defineTrait)
+// {	case "Gender" || "gender":
+// 	let genderTrait=searchByGender(people);
+// 	return genderTrait;
+// 	case "EyeColor" || "eyecolor":
+// 	let eyeColorTrait=searchByEyeColor(people);
+// 	return genderTrait;
+// 	case "GetHeight" || "getheight":
+// 	let getHeightTrait=searchByGetHeight(people);
+// 	return getHeightTrait;
+// 	case "Weight" || "weight":
+// 	let weightTrait=searchByWeight(people);
+// 	return weightTrait;
+// 	case "Occupation" || "occupation":
+// 	let occupationTrait=searchByOccupation(people);
+// 	return occupationTrait;
+// 	case "Dob" || "dob":
+// 	let dobTrait=searchByDob(people);
+// 	return dobTrait;
+// }
+// }
+
+//would you like to define x Y/N
+// N you like to define x
