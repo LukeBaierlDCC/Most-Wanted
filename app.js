@@ -154,9 +154,15 @@ function birthDate(birth)
 
 function displayFamily(person,people)
 {
-	let family = (person.lastName == people.lastName)
-	alert(family);
+	let family = people.filter(function(el) {
+    if(el.lastName === person.lastName) {
+      return true;
+    }
+  });
+  console.log(family);
+  displayPeople(family);
 }
+
 function searchByTraits(people)
 
 {
