@@ -124,7 +124,7 @@ function chars(input){
 
 function birthDate(birth) 
 {
-	var today = new Date(datestring);
+	var today = new Date();
 	var dob = new Date(birth);
 	Number(today);
 	Number(dob);
