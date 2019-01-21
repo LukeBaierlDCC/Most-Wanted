@@ -151,7 +151,16 @@ function birthDate(birth)
  //    return Math.abs(ageDate.getUTCFullYear() - 1970);
 	
 }
-
+function displayListOfPeople(family)
+{
+	familySize=family.length
+	for (let i = 0; i < familySize; i++) 
+	{
+		var name = "";
+		name = (i + 1) + ") " + family[i].firstName + " " + family[i].lastName;
+		alert(name);
+  	}
+}
 function displayFamily(person,people)
 {
 	let family = people.filter(function(el) {
@@ -169,10 +178,12 @@ function displayFamily(person,people)
   	 case "Yes" || "yes" || "y":
   	 break;
   	}
-  displayPeople(family);
+  // displayPeople(family);
+ displayListOfPeople(family);
   let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
  	switch(familyMember)
  	{case "1":
+ 	// confirm("You chose " family[0]". is this correct?");
  	person=family[0]
  	getInfo(person,people)
  	break;
@@ -197,6 +208,8 @@ function displayFamily(person,people)
 function getInfo(person,people)
 {
 let personInfo;
+let name="You are searching information for" + " " + person.firstName + " " + person.lastName + ".";
+alert(name);
 chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
   personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
