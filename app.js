@@ -49,7 +49,7 @@ function mainMenu(person, people)
       // TODO: get person's info
       break;
     case "family":
-
+    displayFamily(person,people);
       // TODO: get person's family
       break;
     case "descendants":
@@ -152,6 +152,11 @@ function birthDate(birth)
 	
 }
 
+function displayFamily(person,people)
+{
+	let family = (person.lastName == people.lastName)
+	alert(family);
+}
 function searchByTraits(people)
 
 {
