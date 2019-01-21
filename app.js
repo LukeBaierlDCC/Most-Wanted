@@ -9,27 +9,17 @@ function app(people)
   switch(searchType)
   {
     case 'yes':
-  	//REMOVE
+    let dirName=searchByName(people);	
+    console.log(dirName);
+    mainMenu(dirName, people);
+    // TODO: search by name
+   	break;
 
-	//
-    let dirName=searchByName(people);
-    	if(dirName==undefined)
-    	{
-    		alert("Could not find that individual. Please try again.");
-    		return app(people);
-    	}
-    	else
-    	{	
-    	console.log(dirName)
-    	mainMenu(dirName,people);
-     	 // TODO: search by name
-   		 break;
-    	}
     case 'no':
-    dirTraits=searchByTraits(people);
-    displayPeople(dirTraits);
-     console.log(dirTraits);
-     mainMenu(dirTraits,people);
+    let dirTraits=searchByTraits(people);
+    let peopleSelection=displayPeople(dirTraits);
+     console.log(peopleSelection);
+     mainMenu(peopleSelection,people);
     //need to get function arraysEqual to access data from people variable
       // TODO: search by traits 
       break;
@@ -41,22 +31,25 @@ function app(people)
 
 }
 // Menu function to call once you find who you are looking for
-function mainMenu(person, people){
+function mainMenu(person, people)
+{
+	console.log(person);
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-  if(!person){
+  if(!person)
+  {
     alert("Could not find that individual.");
     return app(people); // restart
-  }
-
+	}
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
-  switch(displayOption){
+  switch(displayOption)
+  {
     case "info":
     displayPerson(person);
       // TODO: get person's info
       break;
     case "family":
-
+    displayFamily(person,people);
       // TODO: get person's family
       break;
     case "descendants":
@@ -70,9 +63,8 @@ function mainMenu(person, people){
       return; // stop execution
     default:
       return mainMenu(person, people); // ask again
+	}
   }
-}
-
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
@@ -82,7 +74,6 @@ function searchByName(people){
       return true;
     }
   });
-  console.log(filteredPeople);
   return filteredPeople[0];// TODO: What to do with filteredPeople?
 
 }
@@ -93,19 +84,42 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(person){
+function displayPerson(person)
+{
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  var personInfo = "First Name: " + person.firstName + "\n";
+ let personInfo;
+ chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
+  personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+ 	if (chooseTraits== "Gender" || chooseTraits=="gender" || chooseTraits=="All")
+ 	{	
+ personInfo += "Gender: " + person.gender + "\n";
+	}
+ 	if (chooseTraits=="Height" || chooseTraits=="height" || chooseTraits=="All")
+ 	{
   personInfo += "Height: " + person.height + "\n";
+  	}
+ 	if (chooseTraits=="Weight" || chooseTraits=="weight" || chooseTraits=="All")
+  	{
   personInfo += "Weight: " + person.weight + "\n";
+	}
+ 	if (chooseTraits=="Age" || chooseTraits=="age" || chooseTraits=="All")
+ 	{
   personInfo += "Age: " + birthDate(person.dob) + "\n";
+  	}
+  	if (chooseTraits=="Occupation" || chooseTraits=="occupation" || chooseTraits=="All")
+  	{	
   personInfo += "Occupation: " + person.occupation + "\n";
+  	}
+ 	if (chooseTraits=="Eye Color" || chooseTraits=="eye color" || chooseTraits=="All")
+ 	{	
   personInfo += "Eye Color: " + person.eyeColor + "\n";
+  	}
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
+
 // function that prompts and validates user input
 function promptFor(question, callback){
   do{
@@ -139,10 +153,13 @@ function birthDate(birth)
 	var today = new Date();
 	var dob = new Date(birth);
 	let getAge=(Date.now() - dob.getTime());
-	let ageDate = new Date(getAge);
-	return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
+function displayFamily(person,people)
+{
+	let family = (person.lastName == people.lastName)
+	alert(family);
+}
 function searchByTraits(people)
 
 {
@@ -267,8 +284,6 @@ function searchByTraits(people)
      }
     );  return filteredTraits;
 }
-
-//var currentTime = new Date();
 // function searchByGender(people) 
 // {
 // 	let filteredTraits;
