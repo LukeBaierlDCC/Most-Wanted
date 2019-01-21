@@ -13,14 +13,24 @@ function app(people)
 
 	//
     let dirName=searchByName(people);
-    displayPerson(dirName);
-    console.log(dirName)
-      // TODO: search by name
-    break;
+    	if(dirName==undefined)
+    	{
+    		alert("Could not find that individual. Please try again.");
+    		return app(people);
+    	}
+    	else
+    	{	
+    	displayPerson(dirName);
+    	console.log(dirName)
+    	mainMenu(dirName,people);
+     	 // TODO: search by name
+   		 break;
+    	}
     case 'no':
     dirTraits=searchByTraits(people);
     displayPeople(dirTraits);
      console.log(dirTraits);
+     mainMenu(dirTraits,people);
     //need to get function arraysEqual to access data from people variable
       // TODO: search by traits 
       break;
@@ -89,6 +99,11 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Age: " + birthDate(person.dob) + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
@@ -109,10 +124,18 @@ function chars(input){
   return true; // default validation only
 }
 
-function birthDate() 
+function birthDate(birth) 
 {
-	var today = new Date();
+	var today = new Date(datestring);
+	var dob = new Date(birth);
+	Number(today);
+	Number(dob);
+	let age=(today - dob);
 	console.log(today);
+	console.log(dob);
+	console.log(age);
+	return age;
+	
 }
 
 function searchByTraits(people)
@@ -386,6 +409,7 @@ Message Input
 // 				break;
 		
 // 		case "yes" || "Yes" || "Y" || "y" || "":
+
 
 // 		default:
 // 		alert("Invalid input. Please try again!");
