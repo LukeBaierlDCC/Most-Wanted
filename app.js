@@ -97,6 +97,11 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Age: " + birthDate(person.dob) + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
@@ -117,10 +122,18 @@ function chars(input){
   return true; // default validation only
 }
 
-function birthDate() 
+function birthDate(birth) 
 {
-	var today = new Date();
+	var today = new Date(datestring);
+	var dob = new Date(birth);
+	Number(today);
+	Number(dob);
+	let age=(today - dob);
 	console.log(today);
+	console.log(dob);
+	console.log(age);
+	return age;
+	
 }
 function searchByTraits(people) 
 {
