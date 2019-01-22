@@ -50,16 +50,11 @@ switch(displayOption)
       // TODO: get person's info
       break;
       case "family":
-      displayFamily(person,people);
+    displayFamily(person,people);
       // TODO: get person's family
       break;
-<<<<<<< HEAD
     case "descendants":
     displayDescendants(person,people);
-=======
-      case "descendants":
-
->>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
       // TODO: get person's descendants
       break;
       case "restart":
@@ -75,7 +70,6 @@ switch(displayOption)
 
 }
 function searchByName(people){
-<<<<<<< HEAD
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
@@ -83,8 +77,7 @@ function searchByName(people){
     if(el.firstName === firstName && el.lastName === lastName) {
       return true;
     }
-  });
-=======
+  })
 	var firstName = promptFor("What is the person's first name?", chars);
 	var lastName = promptFor("What is the person's last name?", chars);
 
@@ -94,7 +87,6 @@ function searchByName(people){
 		}
 	});
 	console.log(filteredPeople[0]);
->>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
   return filteredPeople[0];// TODO: What to do with filteredPeople?
 
 }
@@ -143,18 +135,15 @@ function displayPerson(person)
 
 // function that prompts and validates user input
 function promptFor(question, callback){
-<<<<<<< HEAD
   do{
     var response = prompt(question).trim();
   } 
   while(!response || !callback(response));
   return response;
-=======
 	do{
 		var response = prompt(question).trim();
 	} while(!response || !callback(response));
 	return response;
->>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
 }
 // helper function to pass into promptFor to validate yes/no answers
 function yesNo(input){
@@ -182,18 +171,14 @@ function birthDate(birth)
 	var today = new Date();
 	var dob = new Date(birth);
 	let getAge=(Date.now() - dob.getTime());
-<<<<<<< HEAD
 }
-=======
 	ageDate = new Date(getAge);
 	return Math.abs(ageDate.getUTCFullYear() - 1970);
 	// function _calculateAge(birthday) { // birthday is a date
  //    var ageDifMs = Date.now() - birthday.getTime();
  //    var ageDate = new Date(ageDifMs); // miliseconds from epoch
  //    return Math.abs(ageDate.getUTCFullYear() - 1970);
->>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
-
-}
+//}
 function displayListOfPeople(family)
 {
 	familySize=family.length
@@ -207,7 +192,6 @@ function displayListOfPeople(family)
 function displayFamily(person,people)
 {
 	let family = people.filter(function(el) {
-<<<<<<< HEAD
     if(el.lastName === person.lastName) {
       return true;
     }
@@ -225,11 +209,10 @@ function displayFamily(person,people)
   let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
  	switch(familyMember) {
  	case "1":
-=======
 		if(el.lastName === person.lastName) {
 			return true;
 		}
-	});
+	};
 	displayPeople(family);
 	moreInfo=promptFor("Would you like to learn more about a family member?", yesNo);
 	yesArray = ["yes","y"]
@@ -244,7 +227,6 @@ function displayFamily(person,people)
   switch(familyMember)
   {case "1":
  	// confirm("You chose " family[0]". is this correct?");
->>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
  	person=family[0]
  	getInfo(person,people)
  	break;
@@ -265,7 +247,7 @@ function displayFamily(person,people)
  	getInfo(person,people)
  	break;
  }
-}
+//
 function getInfo(person,people)
 {
 	let personInfo;
@@ -298,7 +280,6 @@ function getInfo(person,people)
 	{	
 		personInfo += "Eye Color: " + person.eyeColor + "\n";
 	}
-<<<<<<< HEAD
  	if (chooseTraits=="Age" || chooseTraits=="age" || chooseTraits=="All")
  	{
   personInfo += "Age: " + birthDate(person.dob) + "\n";
@@ -315,8 +296,6 @@ function getInfo(person,people)
   		personInfo += "Relation: " +  + "\n";
   	}
   	}
-=======
->>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
@@ -355,10 +334,25 @@ function displayDescendants(person, people, allDescendants = []) {
   }
 }
 
+function checkDescendants(person, people) {
+  var returnNew = false;
+  let newArray = people.filter(function (el) {
+    if( (person.id == el.parents[0]) || (person.id == el.parents[1]) ) {
+      returnNew = true;
+    } else {
+      returnNew = false;
+    }
+  });
+  if (returnNew) {
+    checkDescendants(person, data);
+  } else {
+    return newArray;
+  }
+}
+
 function searchByTraits(people)
 
 {
-<<<<<<< HEAD
     let filteredTraits;
     var gender = promptFor("What is the person's gender?", chars);
     let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
@@ -482,11 +476,10 @@ function searchByTraits(people)
    }
      }
     );  return filteredTraits;
-=======
 	let filteredTraits;
-var gender = promptFor("What is the person's gender?", chars);
-let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-let yesArray = ["yes","y"]
+	var gender = promptFor("What is the person's gender?", chars);
+	let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	let yesArray = ["yes","y"]
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
@@ -501,8 +494,8 @@ let yesArray = ["yes","y"]
 	return filteredTraits;
 	}    
 
-var eyeColor = promptFor("What is the person's eye color?", chars);
-continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	var eyeColor = promptFor("What is the person's eye color?", chars);
+	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
@@ -517,8 +510,8 @@ continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	return filteredTraits;
 	}     
 
-var getHeight = promptFor("What is the person's height?", chars);
-continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	var getHeight = promptFor("What is the person's height?", chars);
+	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
@@ -532,8 +525,8 @@ continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	console.log(filteredTraits);
 	return filteredTraits;
 	}    
-var weight = promptFor("What is the person's weight?", chars);
-continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	var weight = promptFor("What is the person's weight?", chars);
+	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
@@ -547,9 +540,9 @@ continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	console.log(filteredTraits);
 	return filteredTraits;
 	}    
-var occupation = promptFor("What is the person's occupation?", chars);
+	var occupation = promptFor("What is the person's occupation?", chars);
 
-continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
@@ -563,9 +556,9 @@ continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	console.log(filteredTraits);
 	return filteredTraits;
 	}            
-var dob = promptFor("What is the person's date of birth?", chars);
+	var dob = promptFor("What is the person's date of birth?", chars);
 
-continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
@@ -595,7 +588,6 @@ continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 
 );  return filteredTraits;
 
->>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
 }
 // function searchByGender(people) 
 // {
