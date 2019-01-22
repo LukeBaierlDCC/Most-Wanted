@@ -5,28 +5,29 @@ Build all of your functions for displaying and gathering information below (GUI)
 // app is the function called to start the entire application
 function app(people)
 {
-  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
-  switch(searchType)
-  {
-    case 'yes':
-    let dirName=searchByName(people);	
-    console.log(dirName);
-    mainMenu(dirName, people);
+	var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+	switch(searchType)
+	{
+		case 'yes':
+		let dirName=searchByName(people);	
+		console.log(dirName);
+		mainMenu(dirName, people);
     // TODO: search by name
-   	break;
+    break;
 
     case 'no':
+    // findTraits(trait, people);
     let dirTraits=searchByTraits(people);
     let peopleSelection=displayPeople(dirTraits);
-     console.log(peopleSelection);
-     mainMenu(peopleSelection,people);
+    console.log(peopleSelection);
+    return app(people);
     //need to get function arraysEqual to access data from people variable
       // TODO: search by traits 
       break;
-    default:
+      default:
       alert("Invalid input. Please try again!");
       app(people); // restart app
-    break;
+      break;
   }
 
 }
@@ -34,38 +35,47 @@ function app(people)
 function mainMenu(person, people)
 {
 	console.log(person);
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-  if(!person)
-  {
-    alert("Could not find that individual.");
+	/* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+	if(!person)
+	{
+		alert("Could not find that individual.");
     return app(people); // restart
-	}
-  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
+}
+var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
-  switch(displayOption)
-  {
-    case "info":
-    displayPerson(person);
+switch(displayOption)
+{
+	case "info":
+	displayPerson(person);
       // TODO: get person's info
       break;
-    case "family":
-    displayFamily(person,people);
+      case "family":
+      displayFamily(person,people);
       // TODO: get person's family
       break;
+<<<<<<< HEAD
     case "descendants":
     displayDescendants(person,people);
+=======
+      case "descendants":
+
+>>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
       // TODO: get person's descendants
       break;
-    case "restart":
+      case "restart":
       app(people); // restart
       break;
-    case "quit":
-      return; // stop execution
-    default:
-      return mainMenu(person, people); // ask again
-	}
+      case "quit":
+      	return; // stop execution
+      default:
+      break;	
   }
+
+	return mainMenu(person, people); // ask again
+
+}
 function searchByName(people){
+<<<<<<< HEAD
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
@@ -74,63 +84,81 @@ function searchByName(people){
       return true;
     }
   });
+=======
+	var firstName = promptFor("What is the person's first name?", chars);
+	var lastName = promptFor("What is the person's last name?", chars);
+
+	let filteredPeople = people.filter(function(el) {
+		if(el.firstName === firstName && el.lastName === lastName) {
+			return true;
+		}
+	});
+	console.log(filteredPeople[0]);
+>>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
   return filteredPeople[0];// TODO: What to do with filteredPeople?
 
 }
 // alerts a list of people
 function displayPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
-  }).join("\n"));
+	alert(people.map(function(person){
+		return person.firstName + " " + person.lastName;
+	}).join("\n"));
 }
 
 function displayPerson(person)
 {
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
- let personInfo;
- chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
+  let personInfo;
+  chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
   personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
- 	if (chooseTraits== "Gender" || chooseTraits=="gender" || chooseTraits=="All")
- 	{	
- personInfo += "Gender: " + person.gender + "\n";
-	}
- 	if (chooseTraits=="Height" || chooseTraits=="height" || chooseTraits=="All")
- 	{
-  personInfo += "Height: " + person.height + "\n";
-  	}
- 	if (chooseTraits=="Weight" || chooseTraits=="weight" || chooseTraits=="All")
-  	{
-  personInfo += "Weight: " + person.weight + "\n";
-	}
- 	if (chooseTraits=="Age" || chooseTraits=="age" || chooseTraits=="All")
- 	{
-  personInfo += "Age: " + birthDate(person.dob) + "\n";
-  	}
-  	if (chooseTraits=="Occupation" || chooseTraits=="occupation" || chooseTraits=="All")
-  	{	
-  personInfo += "Occupation: " + person.occupation + "\n";
-  	}
- 	if (chooseTraits=="Eye Color" || chooseTraits=="eye color" || chooseTraits=="All")
- 	{	
-  personInfo += "Eye Color: " + person.eyeColor + "\n";
-  	}
+  if (chooseTraits== "Gender" || chooseTraits=="gender" || chooseTraits=="All")
+  {	
+  	personInfo += "Gender: " + person.gender + "\n";
+  }
+  if (chooseTraits=="Height" || chooseTraits=="height" || chooseTraits=="All")
+  {
+  	personInfo += "Height: " + person.height + "\n";
+  }
+  if (chooseTraits=="Weight" || chooseTraits=="weight" || chooseTraits=="All")
+  {
+  	personInfo += "Weight: " + person.weight + "\n";
+  }
+  if (chooseTraits=="Age" || chooseTraits=="age" || chooseTraits=="All")
+  {
+  	personInfo += "Age: " + birthDate(person.dob) + "\n";
+  }
+  if (chooseTraits=="Occupation" || chooseTraits=="occupation" || chooseTraits=="All")
+  {	
+  	personInfo += "Occupation: " + person.occupation + "\n";
+  }
+  if (chooseTraits=="Eye Color" || chooseTraits=="eye color" || chooseTraits=="All")
+  {	
+  	personInfo += "Eye Color: " + person.eyeColor + "\n";
+  }
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
 
 // function that prompts and validates user input
 function promptFor(question, callback){
+<<<<<<< HEAD
   do{
     var response = prompt(question).trim();
   } 
   while(!response || !callback(response));
   return response;
+=======
+	do{
+		var response = prompt(question).trim();
+	} while(!response || !callback(response));
+	return response;
+>>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
 }
 // helper function to pass into promptFor to validate yes/no answers
 function yesNo(input){
-  return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
+	return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }
 
 // helper function to pass in as default promptFor validation
@@ -154,11 +182,32 @@ function birthDate(birth)
 	var today = new Date();
 	var dob = new Date(birth);
 	let getAge=(Date.now() - dob.getTime());
+<<<<<<< HEAD
 }
+=======
+	ageDate = new Date(getAge);
+	return Math.abs(ageDate.getUTCFullYear() - 1970);
+	// function _calculateAge(birthday) { // birthday is a date
+ //    var ageDifMs = Date.now() - birthday.getTime();
+ //    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+ //    return Math.abs(ageDate.getUTCFullYear() - 1970);
+>>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
 
+}
+function displayListOfPeople(family)
+{
+	familySize=family.length
+	for (let i = 0; i < familySize; i++) 
+	{
+		var name = "";
+		name = (i + 1) + ") " + family[i].firstName + " " + family[i].lastName;
+		alert(name);
+	}
+}
 function displayFamily(person,people)
 {
 	let family = people.filter(function(el) {
+<<<<<<< HEAD
     if(el.lastName === person.lastName) {
       return true;
     }
@@ -176,45 +225,80 @@ function displayFamily(person,people)
   let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
  	switch(familyMember) {
  	case "1":
+=======
+		if(el.lastName === person.lastName) {
+			return true;
+		}
+	});
+	displayPeople(family);
+	moreInfo=promptFor("Would you like to learn more about a family member?", yesNo);
+	yesArray = ["yes","y"]
+	if(yesArray.indexOf(moreInfo.toLowerCase()) === -1)
+	{
+		app(people);
+	}
+
+  // displayPeople(family);
+  displayListOfPeople(family);
+  let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
+  switch(familyMember)
+  {case "1":
+ 	// confirm("You chose " family[0]". is this correct?");
+>>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
  	person=family[0]
  	getInfo(person,people)
  	break;
  	case "2":	
-  	person=family[1]
-  	getInfo(person,people)
-  	break;
-  	case "3":
-  	person=family[2]
-  	getInfo(person,people)
-  	break;
-  	case "4":
-  	person=family[3]
-  	getInfo(person,people)
-  	break;
-  	case "5":
-  	person=family[4]
-  	getInfo(person,people)
-  	break;
-  }
+ 	person=family[1]
+ 	getInfo(person,people)
+ 	break;
+ 	case "3":
+ 	person=family[2]
+ 	getInfo(person,people)
+ 	break;
+ 	case "4":
+ 	person=family[3]
+ 	getInfo(person,people)
+ 	break;
+ 	case "5":
+ 	person=family[4]
+ 	getInfo(person,people)
+ 	break;
+ }
 }
 function getInfo(person,people)
 {
-let personInfo;
-chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
-  personInfo = "First Name: " + person.firstName + "\n";
-  personInfo += "Last Name: " + person.lastName + "\n";
- 	if (chooseTraits== "Gender" || chooseTraits=="gender" || chooseTraits=="All")
- 	{	
- personInfo += "Gender: " + person.gender + "\n";
+	let personInfo;
+	let name="You are searching information for" + " " + person.firstName + " " + person.lastName + ".";
+	alert(name);
+	chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
+	personInfo = "First Name: " + person.firstName + "\n";
+	personInfo += "Last Name: " + person.lastName + "\n";
+	if (chooseTraits== "Gender" || chooseTraits=="gender" || chooseTraits=="All")
+	{	
+		personInfo += "Gender: " + person.gender + "\n";
 	}
- 	if (chooseTraits=="Height" || chooseTraits=="height" || chooseTraits=="All")
- 	{
-  personInfo += "Height: " + person.height + "\n";
-  	}
- 	if (chooseTraits=="Weight" || chooseTraits=="weight" || chooseTraits=="All")
-  	{
-  personInfo += "Weight: " + person.weight + "\n";
+	if (chooseTraits=="Height" || chooseTraits=="height" || chooseTraits=="All")
+	{
+		personInfo += "Height: " + person.height + "\n";
 	}
+	if (chooseTraits=="Weight" || chooseTraits=="weight" || chooseTraits=="All")
+	{
+		personInfo += "Weight: " + person.weight + "\n";
+	}
+	if (chooseTraits=="Age" || chooseTraits=="age" || chooseTraits=="All")
+	{
+		personInfo += "Age: " + birthDate(person.dob) + "\n";
+	}
+	if (chooseTraits=="Occupation" || chooseTraits=="occupation" || chooseTraits=="All")
+	{	
+		personInfo += "Occupation: " + person.occupation + "\n";
+	}
+	if (chooseTraits=="Eye Color" || chooseTraits=="eye color" || chooseTraits=="All")
+	{	
+		personInfo += "Eye Color: " + person.eyeColor + "\n";
+	}
+<<<<<<< HEAD
  	if (chooseTraits=="Age" || chooseTraits=="age" || chooseTraits=="All")
  	{
   personInfo += "Age: " + birthDate(person.dob) + "\n";
@@ -231,6 +315,8 @@ chooseTraits=promptFor("What would you like to display? Options to choose: Gende
   		personInfo += "Relation: " +  + "\n";
   	}
   	}
+=======
+>>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
@@ -272,6 +358,7 @@ function displayDescendants(person, people, allDescendants = []) {
 function searchByTraits(people)
 
 {
+<<<<<<< HEAD
     let filteredTraits;
     var gender = promptFor("What is the person's gender?", chars);
     let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
@@ -395,6 +482,120 @@ function searchByTraits(people)
    }
      }
     );  return filteredTraits;
+=======
+	let filteredTraits;
+var gender = promptFor("What is the person's gender?", chars);
+let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+let yesArray = ["yes","y"]
+	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
+	{
+	filteredTraits = people.filter(function(el)
+	{
+		if(el.gender === gender)
+		{
+			return true;
+		}
+	}
+	);
+	console.log(filteredTraits);
+	return filteredTraits;
+	}    
+
+var eyeColor = promptFor("What is the person's eye color?", chars);
+continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
+	{
+	filteredTraits = people.filter(function(el)
+	{
+		if(el.eyeColor === eyeColor && el.gender === gender)
+		{
+			return true;
+		}
+	}
+	);
+	console.log(filteredTraits);
+	return filteredTraits;
+	}     
+
+var getHeight = promptFor("What is the person's height?", chars);
+continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
+	{
+	filteredTraits = people.filter(function(el)
+	{
+		if(el.height === getHeight && el.eyeColor === eyeColor && el.gender === gender)
+		{
+			return true;
+		}
+	}
+	);
+	console.log(filteredTraits);
+	return filteredTraits;
+	}    
+var weight = promptFor("What is the person's weight?", chars);
+continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
+	{
+	filteredTraits = people.filter(function(el)
+	{
+		if(el.weight === weight && el.height === getHeight && el.eyeColor === eyeColor && el.gender === gender)
+		{
+			return true;
+		}
+	}
+	);
+	console.log(filteredTraits);
+	return filteredTraits;
+	}    
+var occupation = promptFor("What is the person's occupation?", chars);
+
+continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
+	{
+	filteredTraits = people.filter(function(el)
+	{
+		if(el.occupation === occupation && el.weight === weight && el.height === getHeight && el.eyeColor === eyeColor && el.gender === gender)
+		{
+			return true;
+		}
+	}
+	);
+	console.log(filteredTraits);
+	return filteredTraits;
+	}            
+var dob = promptFor("What is the person's date of birth?", chars);
+
+continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
+	{
+	filteredTraits = people.filter(function(el)
+	{
+		if(el.dob === dob && el.occupation === occupation && el.weight === weight && el.height === getHeight && el.eyeColor === eyeColor && el.gender === gender)
+		{
+			return true;
+		}
+	}
+	);
+	console.log(filteredTraits);
+	return filteredTraits;
+	}            
+	filteredTraits = people.filter(function(el)
+
+{
+
+	if(el.gender === gender && el.eyeColor === eyeColor && el.getHeight === getHeight && el.weight === weight && el.occupation === occupation && el.dob === dob)
+
+	{
+
+		return true;
+
+	}
+
+}
+
+);  return filteredTraits;
+
+>>>>>>> db20c99e58136bbe674a281bbb620cad3f1c215f
 }
 // function searchByGender(people) 
 // {
@@ -411,11 +612,11 @@ function searchByTraits(people)
 // 				}
 // 			}
 // 				);
-		
+
 // 			console.log(filteredTraits);
 // 				return filteredTraits;
 // 				break;
-		
+
 // 		case "yes" || "Yes" || "Y" || "y":
 // 		// default:
 // 		// alert("Invalid input. Please try again!");
@@ -436,7 +637,7 @@ function searchByTraits(people)
 // 	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 // 		switch(continuePrompt)
 // 		{case "no" || "No" || "N" || "n":
-		
+
 // 			filteredTraits = people.filter(function(el)
 // 			{
 //     			if(el.eyeColor === eyeColor && el.gender === gender) 
@@ -445,11 +646,11 @@ function searchByTraits(people)
 // 				}
 // 			}
 // 				);
-		
+
 // 			console.log(filteredTraits);
 // 				return filteredTraits;
 // 				break;
-		
+
 // 		case "yes" || "Yes" || "Y" || "y" || " ":
 
 // 		default:
@@ -465,7 +666,7 @@ function searchByTraits(people)
 //   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 // 		switch(continuePrompt)
 // 		{case "no" || "No" || "N" || "n":
-		
+
 // 			filteredTraits = people.filter(function(el)
 // 			{
 //     			if(el.getHeight === getHeight) 
@@ -474,11 +675,11 @@ function searchByTraits(people)
 // 				}
 // 			}
 // 				);
-		
+
 // 			console.log(filteredTraits);
 // 				return filteredTraits;
 // 				break;
-		
+
 // 		case "yes" || "Yes" || "Y" || "y" || "":
 
 // 		default:
@@ -494,7 +695,7 @@ function searchByTraits(people)
 //   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 // 		switch(continuePrompt)
 // 		{case "no" || "No" || "N" || "n":
-		
+
 // 			filteredTraits = people.filter(function(el)
 // 			{
 //     			if(el.weight === weight) 
@@ -503,11 +704,11 @@ function searchByTraits(people)
 // 				}
 // 			}
 // 				);
-		
+
 // 			console.log(filteredTraits);
 // 				return filteredTraits;
 // 				break;
-		
+
 // 		case "yes" || "Yes" || "Y" || "y" || "":
 
 
@@ -524,7 +725,7 @@ function searchByTraits(people)
 //   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 // 		switch(continuePrompt)
 // 		{case "no" || "No" || "N" || "n":
-		
+
 // 			filteredTraits = people.filter(function(el)
 // 			{
 //     			if(el.occupation === occupation) 
@@ -533,11 +734,11 @@ function searchByTraits(people)
 // 				}
 // 			}
 // 				);
-		
+
 // 			console.log(filteredTraits);
 // 				return filteredTraits;
 // 				break;
-		
+
 // 		case "yes" || "Yes" || "Y" || "y" || "":
 
 // 		default:
@@ -553,7 +754,7 @@ function searchByTraits(people)
 //   	continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 // 		switch(continuePrompt)
 // 		{case "no" || "No" || "N" || "n":
-		
+
 // 			filteredTraits = people.filter(function(el)
 // 			{
 //     			if(el.dob === dob) 
@@ -562,11 +763,11 @@ function searchByTraits(people)
 // 				}
 // 			}
 // 				);
-		
+
 // 			console.log(filteredTraits);
 // 				return filteredTraits;
 // 				break;
-		
+
 // 		case "yes" || "Yes" || "Y" || "y" || "":
 
 // 		default:
