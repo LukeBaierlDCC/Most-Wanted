@@ -47,15 +47,12 @@ switch(displayOption)
 {
 	case "info":
 	displayPerson(person);
-      // TODO: get person's info
       break;
       case "family":
     displayFamily(person,people);
-      // TODO: get person's family
       break;
     case "descendants":
     displayDescendants(person,people);
-      // TODO: get person's descendants
       break;
       case "restart":
       app(people); // restart
@@ -87,10 +84,10 @@ function searchByName(people){
 		}
 	});
 	console.log(filteredPeople[0]);
-  return filteredPeople[0];// TODO: What to do with filteredPeople?
+  return filteredPeople[0];
 
 }
-// alerts a list of people
+
 function displayPeople(people){
 	alert(people.map(function(person){
 		return person.firstName + " " + person.lastName;
@@ -99,8 +96,6 @@ function displayPeople(people){
 
 function displayPerson(person)
 {
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
   let personInfo;
   chooseTraits=promptFor("What would you like to display? Options to choose: Gender, Height, Weight, Age, Occupation, Eye Color, or All",chars);
   personInfo = "First Name: " + person.firstName + "\n";
@@ -129,11 +124,9 @@ function displayPerson(person)
   {	
   	personInfo += "Eye Color: " + person.eyeColor + "\n";
   }
-  // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
 
-// function that prompts and validates user input
 function promptFor(question, callback){
   do
   {
@@ -147,13 +140,13 @@ function promptFor(question, callback){
 	} while(!response || !callback(response));
 	return response;
 }
-// helper function to pass into promptFor to validate yes/no answers
+
 function yesNo(input){
 	return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }
-// helper function to pass in as default promptFor validation
+
 function chars(input){
-  return true; // default validation only
+  return true;
 }
 // function getAge(dateString) {
 // 	var today = new Date();
@@ -171,13 +164,16 @@ function birthDate(birth)
 	var dob = new Date(birth);
 	let getAge=(Date.now() - dob.getTime());
 }
-	ageDate = new Date(getAge);
-	return Math.abs(ageDate.getUTCFullYear() - 1970);
-	// function _calculateAge(birthday) { // birthday is a date
- //    var ageDifMs = Date.now() - birthday.getTime();
- //    var ageDate = new Date(ageDifMs); // miliseconds from epoch
- //    return Math.abs(ageDate.getUTCFullYear() - 1970);
-//}
+
+//  ageDate = new Date(getAge);
+// return Math.abs(ageDate.getUTCFullYear() - 1970);
+
+function _calculateAge(birthday) { // birthday is a date
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
 function displayListOfPeople(family)
 {
 	familySize=family.length
@@ -294,7 +290,7 @@ function getInfo(person,people)
   	{
   		personInfo += "Relation: " +  + "\n";
   	}
-  // TODO: finish getting the rest of the information to display
+
   alert(personInfo);
 }
 
@@ -477,10 +473,10 @@ function searchByTraits(people)
 	let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	let yesArray = ["yes","y"]
 
-let filteredTraits;
-var gender = promptFor("What is the person's gender?", chars);
-let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-let yesArray = ["yes","y"]
+	let filteredTraits;
+	var gender = promptFor("What is the person's gender?", chars);
+	let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+	let yesArray = ["yes","y"]
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
