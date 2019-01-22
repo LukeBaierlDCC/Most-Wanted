@@ -135,13 +135,15 @@ function displayPerson(person)
 
 // function that prompts and validates user input
 function promptFor(question, callback){
-  do{
+  do
+  {
     var response = prompt(question).trim();
   } 
   while(!response || !callback(response));
   return response;
-	do{
-		var response = prompt(question).trim();
+	do
+	{
+	var response = prompt(question).trim();
 	} while(!response || !callback(response));
 	return response;
 }
@@ -149,12 +151,10 @@ function promptFor(question, callback){
 function yesNo(input){
 	return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }
-
 // helper function to pass in as default promptFor validation
 function chars(input){
   return true; // default validation only
 }
-
 // function getAge(dateString) {
 // 	var today = new Date();
 // 	var birthDate = new Date(dateString);
@@ -165,7 +165,6 @@ function chars(input){
 // 	}
 // 	return age;
 // }
-
 function birthDate(birth) 
 {
 	var today = new Date();
@@ -209,8 +208,8 @@ function displayFamily(person,people)
   let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
  	switch(familyMember) {
  	case "1":
-		if(el.lastName === person.lastName) {
-			return true;
+	if(el.lastName === person.lastName) {
+		return true;
 		}
 	};
 	displayPeople(family);
@@ -220,12 +219,12 @@ function displayFamily(person,people)
 	{
 		app(people);
 	}
-
   // displayPeople(family);
   displayListOfPeople(family);
   let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
   switch(familyMember)
-  {case "1":
+  {
+  	case "1":
  	// confirm("You chose " family[0]". is this correct?");
  	person=family[0]
  	getInfo(person,people)
@@ -247,7 +246,7 @@ function displayFamily(person,people)
  	getInfo(person,people)
  	break;
  }
-//
+
 function getInfo(person,people)
 {
 	let personInfo;
@@ -295,7 +294,6 @@ function getInfo(person,people)
   	{
   		personInfo += "Relation: " +  + "\n";
   	}
-  	}
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
@@ -319,12 +317,10 @@ function displayDescendants(person, people, allDescendants = []) {
   else if (allDescendants.length === 0) {
     loopFinish = true;
   }
-  
   if (newArray.length >= 1) {
     displayPeople(allDescendants)
     return app(people);
   }
-  
   if (loopFinish) {
     if (newArray === undefined || newArray.length === 0) {
       alert("This person has no descendants.");
@@ -351,7 +347,6 @@ function checkDescendants(person, people) {
 }
 
 function searchByTraits(people)
-
 {
     let filteredTraits;
     var gender = promptFor("What is the person's gender?", chars);
@@ -368,6 +363,7 @@ function searchByTraits(people)
                 );
             console.log(filteredTraits);
                 return filteredTraits;
+            }
                 break;
         	case "yes" || "Yes" || "Y" || "y" || " ":
         	        }    
@@ -480,6 +476,11 @@ function searchByTraits(people)
 	var gender = promptFor("What is the person's gender?", chars);
 	let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 	let yesArray = ["yes","y"]
+
+let filteredTraits;
+var gender = promptFor("What is the person's gender?", chars);
+let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+let yesArray = ["yes","y"]
 	if(yesArray.indexOf(continuePrompt.toLowerCase()) === -1)
 	{
 	filteredTraits = people.filter(function(el)
@@ -587,7 +588,6 @@ function searchByTraits(people)
 }
 
 );  return filteredTraits;
-
 }
 // function searchByGender(people) 
 // {
