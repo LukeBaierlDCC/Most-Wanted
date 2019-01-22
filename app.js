@@ -245,10 +245,7 @@ function getInfo(person,people)
 	{	
 		personInfo += "Eye Color: " + person.eyeColor + "\n";
 	}
-  	if (chooseTraits=="Relation")
-  	{
-  		personInfo += "Relation: " +  + "\n";
-  	}
+  
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
