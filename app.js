@@ -53,7 +53,7 @@ function mainMenu(person, people)
       // TODO: get person's family
       break;
     case "descendants":
-
+    displayDescendants(person,people);
       // TODO: get person's descendants
       break;
     case "restart":
@@ -124,7 +124,8 @@ function displayPerson(person)
 function promptFor(question, callback){
   do{
     var response = prompt(question).trim();
-  } while(!response || !callback(response));
+  } 
+  while(!response || !callback(response));
   return response;
 }
 // helper function to pass into promptFor to validate yes/no answers
@@ -164,8 +165,7 @@ function displayFamily(person,people)
   });
   displayPeople(family);
   moreInfo=promptFor("Would you like to learn more about a family member?",chars);
-  	switch(moreInfo)
-  	{
+  	switch(moreInfo) {
   	case "No" || "no" || "n":
   	app(people);
   	break; 			
@@ -174,8 +174,8 @@ function displayFamily(person,people)
   	}
   displayPeople(family);
   let familyMember=promptFor("Which family member would you like to learn more about? Enter the number associated with the family member.",chars);
- 	switch(familyMember)
- 	{case "1":
+ 	switch(familyMember) {
+ 	case "1":
  	person=family[0]
  	getInfo(person,people)
  	break;
@@ -226,9 +226,47 @@ chooseTraits=promptFor("What would you like to display? Options to choose: Gende
  	if (chooseTraits=="Eye Color" || chooseTraits=="eye color" || chooseTraits=="All")
  	{	
   personInfo += "Eye Color: " + person.eyeColor + "\n";
+  	if (chooseTraits=="Relation")
+  	{
+  		personInfo += "Relation: " +  + "\n";
+  	}
   	}
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+}
+
+function displayDescendants(person, people, allDescendants = []) {
+  var loopFinish = false;
+  let newArray = people.filter(function (el) {
+    if( (person.id == el.parents[0]) || (person.id == el.parents[1]) ) {
+      allDescendants.push(el)
+      return true;
+    } else {
+      return false;
+    }
+  });
+  if (newArray.length > 1) {
+    for (i = 0; i < newArray.length; i++) {
+      displayDescendants(newArray[i], people);
+    }
+    loopFinish = true;
+  } 
+  else if (allDescendants.length === 0) {
+    loopFinish = true;
+  }
+  
+  if (newArray.length >= 1) {
+    displayPeople(allDescendants)
+    return app(people);
+  }
+  
+  if (loopFinish) {
+    if (newArray === undefined || newArray.length === 0) {
+      alert("This person has no descendants.");
+      return app(people);
+    }
+    loopFinish = false;
+  }
 }
 
 function searchByTraits(people)
@@ -237,8 +275,8 @@ function searchByTraits(people)
     let filteredTraits;
     var gender = promptFor("What is the person's gender?", chars);
     let continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-        switch(continuePrompt)
-        {case "no" || "No" || "N" || "n":
+        switch(continuePrompt) {
+        	case "no" || "No" || "N" || "n":
             filteredTraits = people.filter(function(el)
             {
                if(el.gender === gender)
@@ -250,11 +288,13 @@ function searchByTraits(people)
             console.log(filteredTraits);
                 return filteredTraits;
                 break;
-        case "yes" || "Yes" || "Y" || "y" || " ":        }    var eyeColor = promptFor("What is the person's eye color?", chars);
+        	case "yes" || "Yes" || "Y" || "y" || " ":
+        	        }    
+    var eyeColor = promptFor("What is the person's eye color?", chars);
 
     continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-        switch(continuePrompt)
-        {case "no" || "No" || "N" || "n":      
+        switch(continuePrompt) {
+        	case "no" || "No" || "N" || "n":      
             filteredTraits = people.filter(function(el)
             {
                if(el.eyeColor === eyeColor && el.gender === gender)
@@ -266,17 +306,18 @@ function searchByTraits(people)
             console.log(filteredTraits);
                 return filteredTraits;
                 break;        
-    case "yes" || "Yes" || "Y" || "y" || " ":        }
+    case "yes" || "Yes" || "Y" || "y" || " ":
+            }
 
-     var getHeight = promptFor("What is the person's height?", chars);
-     continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-        switch(continuePrompt)
-        {case "no" || "No" || "N" || "n":        
+    var getHeight = promptFor("What is the person's height?", chars);
+    continuePrompt = promptFor("Would you like to continue? Y/N", chars);
+        switch(continuePrompt) {
+    case "no" || "No" || "N" || "n":        
             filteredTraits = people.filter(function(el)
             {
-               if(el.getHeight === getHeight)
+              if(el.getHeight === getHeight)
                {
-                 return true;
+                return true;
                 }
             }
                 );        
@@ -288,8 +329,8 @@ function searchByTraits(people)
             }      
     var weight = promptFor("What is the person's weight?", chars);
     continuePrompt = promptFor("Would you like to continue? Y/N", chars);
-        switch(continuePrompt)
-        {case "no" || "No" || "N" || "n":        
+        switch(continuePrompt) {
+    case "no" || "No" || "N" || "n":        
             filteredTraits = people.filter(function(el)
             {
                if(el.weight === weight)
@@ -328,7 +369,7 @@ function searchByTraits(people)
 	 var dob = promptFor("What is the person's date of birth?", chars);
      continuePrompt = promptFor("Would you like to continue? Y/N", chars);
 
-        switch(continuePrompt)
+       switch(continuePrompt)
    {
    	case "no" || "No" || "N" || "n":
     filteredTraits = people.filter(function(el)
